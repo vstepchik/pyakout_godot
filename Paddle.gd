@@ -9,7 +9,7 @@ func _ready():
 	screen_size = get_viewport_rect().size
 
 func _process(delta):
-	var width = $Sprite.rect_size.x
+	var width = $Body/CollisionShape2D.shape.height + $Body/CollisionShape2D.shape.radius * 2
 	var prev_position = position
 	var velocity = Vector2(0, 0)
 	
@@ -31,3 +31,6 @@ func release_ball():
 	if ball:
 		ball.go()
 		ball.apply_central_impulse(Vector2(100, -500))
+
+func accept_score(amount):
+	print("got score: ", amount)

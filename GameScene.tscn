@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Paddle.tscn" type="PackedScene" id=1]
 [ext_resource path="res://GameScene.gd" type="Script" id=2]
+[ext_resource path="res://res/materials/WallMaterial.tres" type="PhysicsMaterial" id=3]
 
 [sub_resource type="LineShape2D" id=1]
 normal = Vector2( 1, 0 )
@@ -60,6 +61,8 @@ alignment = 1
 margin_bottom = 1076.0
 
 [node name="WallLeft" type="StaticBody2D" parent="HBoxContainer/LevelBox/Walls/Walls/Left"]
+collision_layer = 8
+physics_material_override = ExtResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HBoxContainer/LevelBox/Walls/Walls/Left/WallLeft"]
 shape = SubResource( 1 )
@@ -71,6 +74,8 @@ margin_bottom = 1076.0
 size_flags_horizontal = 3
 
 [node name="WallTop" type="StaticBody2D" parent="HBoxContainer/LevelBox/Walls/Walls/Top"]
+collision_layer = 8
+physics_material_override = ExtResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HBoxContainer/LevelBox/Walls/Walls/Top/WallTop"]
 shape = SubResource( 2 )
@@ -81,6 +86,8 @@ margin_right = 1916.0
 margin_bottom = 1076.0
 
 [node name="WallRight" type="StaticBody2D" parent="HBoxContainer/LevelBox/Walls/Walls/Right"]
+collision_layer = 8
+physics_material_override = ExtResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HBoxContainer/LevelBox/Walls/Walls/Right/WallRight"]
 shape = SubResource( 3 )
@@ -97,6 +104,7 @@ gravity_vec = Vector2( 0, 0 )
 gravity = 0.0
 linear_damp = 0.0
 angular_damp = 0.0
+collision_layer = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HBoxContainer/LevelBox/Walls/Bottom/WallBottom"]
 shape = SubResource( 4 )

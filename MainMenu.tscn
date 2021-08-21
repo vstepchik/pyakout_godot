@@ -31,21 +31,21 @@ __meta__ = {
 }
 
 [node name="Rows" type="VBoxContainer" parent="ScreenMargin/Columns"]
-margin_right = 330.0
+margin_right = 340.0
 margin_bottom = 920.0
 custom_constants/separation = 60
 
 [node name="Logo" type="TextureRect" parent="ScreenMargin/Columns/Rows"]
-margin_right = 330.0
-margin_bottom = 218.0
+margin_right = 340.0
+margin_bottom = 80.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
 texture = ExtResource( 1 )
 stretch_mode = 1
 
 [node name="Buttons" type="VBoxContainer" parent="ScreenMargin/Columns/Rows"]
-margin_top = 278.0
-margin_right = 330.0
+margin_top = 140.0
+margin_right = 340.0
 margin_bottom = 846.0
 size_flags_vertical = 3
 custom_constants/separation = 16
@@ -59,35 +59,37 @@ margin_bottom = 258.0
 text = "Continue"
 
 [node name="ButtonNewGame" type="Button" parent="ScreenMargin/Columns/Rows/Buttons"]
-margin_top = 256.0
-margin_right = 330.0
-margin_bottom = 276.0
+margin_top = 325.0
+margin_right = 340.0
+margin_bottom = 345.0
 text = "New Game"
 
 [node name="ButtonExit" type="Button" parent="ScreenMargin/Columns/Rows/Buttons"]
-margin_top = 292.0
-margin_right = 330.0
-margin_bottom = 312.0
+margin_top = 361.0
+margin_right = 340.0
+margin_bottom = 381.0
 text = "Exit"
 
 [node name="Label" type="Label" parent="ScreenMargin/Columns/Rows"]
 margin_top = 906.0
-margin_right = 330.0
+margin_right = 340.0
 margin_bottom = 920.0
 text = "Version 0.01"
 
 [node name="CenterContainer" type="CenterContainer" parent="ScreenMargin/Columns"]
-margin_left = 338.0
+margin_left = 348.0
 margin_right = 1680.0
 margin_bottom = 920.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Splash" type="TextureRect" parent="ScreenMargin/Columns/CenterContainer"]
-margin_left = 506.0
-margin_top = 351.0
+margin_left = 496.0
+margin_top = 420.0
 margin_right = 836.0
-margin_bottom = 569.0
+margin_bottom = 500.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 texture = ExtResource( 1 )
 
 [connection signal="pressed" from="ScreenMargin/Columns/Rows/Buttons/ButtonNewGame" to="." method="new_game"]

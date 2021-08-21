@@ -4,4 +4,6 @@ func _ready():
 	print("Ready!")
 
 func new_game():
-	get_tree().change_scene("res://GameScene.tscn")
+	var result = get_tree().change_scene("res://GameScene.tscn")
+	if result != OK:
+		print("Error loading scene!")

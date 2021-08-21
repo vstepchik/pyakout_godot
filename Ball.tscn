@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Ball.gd" type="Script" id=1]
+[ext_resource path="res://res/img/balls.png" type="Texture" id=2]
 
 [sub_resource type="PhysicsMaterial" id=1]
 bounce = 1.0
@@ -8,27 +9,23 @@ bounce = 1.0
 [sub_resource type="CircleShape2D" id=2]
 
 [node name="Ball" type="RigidBody2D"]
+collision_mask = 14
 mode = 3
 physics_material_override = SubResource( 1 )
+contacts_reported = 3
 contact_monitor = true
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true
 }
 
-[node name="ColorRect" type="ColorRect" parent="."]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -10.0
-margin_top = -10.0
-margin_right = 10.0
-margin_bottom = 10.0
-color = Color( 1, 0.980392, 0.454902, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 2, 2 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 10, 10 )
 
 [node name="Shape" type="CollisionShape2D" parent="."]
 shape = SubResource( 2 )
+
+[connection signal="body_entered" from="." to="." method="_on_Ball_body_entered"]

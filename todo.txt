@@ -1,0 +1,79 @@
+---------------{ [TODO] }---------------
+
+================vLEGENDv================
+    [ ]     planned
+    [o]     done
+    [x]     cancelled
+    [?]     questionable
+================^LEGEND^================
+
+general
+    [?] devise spritesheet that allows dynamic coloring
+    [ ] win/loose condition
+    [ ] in-game ui
+    [ ] 5 stages
+    [ ] 10 stages
+    [ ] 25 stages
+    [ ] 50 stages
+    [ ] 100 stages
+    [?] 200 stages
+    [?] procedure-generated stages
+    [ ] menus
+bricks:
+    [ ] materials
+    kinds:
+        [o] usual
+        [ ] adamantine
+        [ ] with hp
+        [ ] force (repels balls with shockwave if they're not fast enough)
+        [ ] side-adamantine
+        [ ] attracting
+        [ ] distracting
+        [ ] blinking
+        [ ] hiding (invisible before 1st hit)
+        [ ] explosive
+        [ ] random speed vector assigning (should be careful not to set horisontal vector)
+        [ ] teleporting
+        [ ] floating (moving)
+        [ ] accelerating
+paddle:
+    [?] different materials (affects bounce speed ratio)
+    [ ] recoil (should look nice)
+    [ ] attractive (with cool electric arcs [ ] and "wwwooomm" sound, or 50hz sine)
+    [ ] if 15s not being hit ability to suck in all balls (to prevent ball stuck)
+ball:
+    class Ball {
+        private Set<Ability> abilities;
+        speed, weight, hardness, etc
+    }
+    [ ] materials
+bonus:
+    paddle modifiers:
+        [ ] size <>/><
+        [ ] shoot
+        [ ] sticky
+        [ ] falling bricks
+        ...
+    balls modifiers:
+        [ ] size
+        [ ] abilities
+        [ ] material
+        [ ] bonus life
+        [ ] speed
+        [ ] explode on N smaller ones
+        [ ] path prediction
+
+[ ] and sounds
+[ ] and music :(
+
+misc:
+    [ ] expert-level stages with bricks below paddle
+
+---
+
+candybox:
+    [ ] animated sprites
+    basic controls:
+        [?] menus
+        [ ] buttons
+        [ ] text fields
