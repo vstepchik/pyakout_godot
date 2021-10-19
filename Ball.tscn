@@ -20,10 +20,9 @@ __meta__ = {
 }
 
 [node name="Sprite" type="Sprite" parent="."]
-scale = Vector2( 2, 2 )
 texture = ExtResource( 2 )
 region_enabled = true
-region_rect = Rect2( 0, 0, 10, 10 )
+region_rect = Rect2( 0, 0, 32, 32 )
 
 [node name="Shape" type="CollisionShape2D" parent="."]
 shape = SubResource( 2 )

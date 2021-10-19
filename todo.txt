@@ -53,6 +53,7 @@ bonus:
         [ ] shoot
         [ ] sticky
         [ ] falling bricks
+        [ ] concave/convex bumper shape
         ...
     balls modifiers:
         [ ] size
@@ -62,6 +63,8 @@ bonus:
         [ ] speed
         [ ] explode on N smaller ones
         [ ] path prediction
+    level modifiers:
+        [ ] temporary gravity up
 
 [ ] and sounds
 [ ] and music :(

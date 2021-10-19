@@ -1,6 +1,7 @@
 extends Node2D
 
 export var speed = 400
+export var score = 0
 export var attachedBalls: Array = []
 
 var screen_size
@@ -33,4 +34,4 @@ func release_ball():
 		ball.apply_central_impulse(Vector2(100, -500))
 
 func accept_score(amount):
-	print("got score: ", amount)
+	score += amount

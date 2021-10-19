@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Paddle.tscn" type="PackedScene" id=1]
 [ext_resource path="res://GameScene.gd" type="Script" id=2]
 [ext_resource path="res://res/materials/WallMaterial.tres" type="PhysicsMaterial" id=3]
+[ext_resource path="res://res/sounds/sounds.wav" type="AudioStream" id=4]
 
 [sub_resource type="LineShape2D" id=1]
 normal = Vector2( 1, 0 )
@@ -36,8 +37,21 @@ margin_right = 1920.0
 margin_bottom = 1080.0
 size_flags_horizontal = 3
 
+[node name="HudBox" type="ColorRect" parent="HBoxContainer"]
+margin_bottom = 1080.0
+grow_horizontal = 0
+
+[node name="ScoreLabel" type="Label" parent="HBoxContainer/HudBox"]
+margin_right = 40.0
+margin_bottom = 14.0
+text = "Score: 0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="LevelBox" type="MarginContainer" parent="HBoxContainer"]
-margin_right = 1916.0
+margin_left = 4.0
+margin_right = 1920.0
 margin_bottom = 1080.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -109,18 +123,11 @@ collision_layer = 8
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HBoxContainer/LevelBox/Walls/Bottom/WallBottom"]
 shape = SubResource( 4 )
 
-[node name="HudBox" type="ColorRect" parent="HBoxContainer"]
-margin_left = 1920.0
-margin_right = 1920.0
-margin_bottom = 1080.0
-grow_horizontal = 0
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
 
-[node name="Label" type="Label" parent="HBoxContainer/HudBox"]
-margin_right = 40.0
-margin_bottom = 14.0
-text = "Score"
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+position = Vector2( 960, 1000 )
+stream = ExtResource( 4 )
 
 [connection signal="body_entered" from="HBoxContainer/LevelBox/Walls/Bottom/WallBottom" to="." method="_on_WallBottom_body_entered"]

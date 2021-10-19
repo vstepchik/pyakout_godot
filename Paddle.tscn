@@ -6,10 +6,10 @@
 [ext_resource path="res://PaddleBody.gd" type="Script" id=4]
 
 [sub_resource type="CapsuleShape2D" id=1]
-radius = 12.0
-height = 96.0
+height = 100.0
 
 [node name="Node2D" type="Node2D"]
+position = Vector2( 0.0468216, 0 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true
@@ -30,5 +30,8 @@ region_rect = Rect2( 0, 0, 50, 10 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Body"]
 rotation = 1.5708
 shape = SubResource( 1 )
+
+[node name="CollisionBump" type="CollisionPolygon2D" parent="Body"]
+polygon = PoolVector2Array( 0, -14, -50, -10, 50, -10 )
 
 [connection signal="score_accepted" from="Body" to="." method="accept_score"]
