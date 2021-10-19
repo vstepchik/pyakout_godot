@@ -24,6 +24,26 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+position = Vector2( 960, 1000 )
+stream = ExtResource( 4 )
+
+[node name="HudBox" type="ColorRect" parent="."]
+margin_right = 1920.0
+margin_bottom = 1080.0
+grow_horizontal = 0
+
+[node name="ScoreLabel" type="Label" parent="HudBox"]
+margin_right = 40.0
+margin_bottom = 14.0
+text = "Score: 0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="ColorRect" type="ColorRect" parent="."]
 margin_right = 1920.0
 margin_bottom = 1080.0
@@ -32,87 +52,56 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
-margin_right = 1920.0
-margin_bottom = 1080.0
-size_flags_horizontal = 3
+[node name="LevelBox" type="CanvasLayer" parent="."]
 
-[node name="HudBox" type="ColorRect" parent="HBoxContainer"]
-margin_bottom = 1080.0
-grow_horizontal = 0
+[node name="PlayerPaddle" parent="LevelBox" instance=ExtResource( 1 )]
+position = Vector2( 960, 1060 )
 
-[node name="ScoreLabel" type="Label" parent="HBoxContainer/HudBox"]
-margin_right = 40.0
-margin_bottom = 14.0
-text = "Score: 0"
+[node name="LeftWall" type="Control" parent="LevelBox"]
+size_flags_horizontal = 0
+size_flags_vertical = 0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="LevelBox" type="MarginContainer" parent="HBoxContainer"]
-margin_left = 4.0
-margin_right = 1920.0
-margin_bottom = 1080.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="PlayerPaddle" parent="HBoxContainer/LevelBox" instance=ExtResource( 1 )]
-position = Vector2( 960, 1060 )
-
-[node name="Walls" type="VBoxContainer" parent="HBoxContainer/LevelBox"]
-margin_right = 1916.0
-margin_bottom = 1080.0
-alignment = 1
-
-[node name="Walls" type="HBoxContainer" parent="HBoxContainer/LevelBox/Walls"]
-margin_right = 1916.0
-margin_bottom = 1076.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-alignment = 1
-
-[node name="Left" type="Control" parent="HBoxContainer/LevelBox/Walls/Walls"]
-margin_bottom = 1076.0
-
-[node name="WallLeft" type="StaticBody2D" parent="HBoxContainer/LevelBox/Walls/Walls/Left"]
+[node name="WallLeft" type="StaticBody2D" parent="LevelBox/LeftWall"]
 collision_layer = 8
 physics_material_override = ExtResource( 3 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HBoxContainer/LevelBox/Walls/Walls/Left/WallLeft"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelBox/LeftWall/WallLeft"]
 shape = SubResource( 1 )
 
-[node name="Top" type="Control" parent="HBoxContainer/LevelBox/Walls/Walls"]
-margin_left = 4.0
-margin_right = 1912.0
-margin_bottom = 1076.0
-size_flags_horizontal = 3
+[node name="TopWall" type="Control" parent="LevelBox"]
+size_flags_horizontal = 0
+size_flags_vertical = 0
 
-[node name="WallTop" type="StaticBody2D" parent="HBoxContainer/LevelBox/Walls/Walls/Top"]
+[node name="WallTop" type="StaticBody2D" parent="LevelBox/TopWall"]
 collision_layer = 8
 physics_material_override = ExtResource( 3 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HBoxContainer/LevelBox/Walls/Walls/Top/WallTop"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelBox/TopWall/WallTop"]
 shape = SubResource( 2 )
 
-[node name="Right" type="Control" parent="HBoxContainer/LevelBox/Walls/Walls"]
-margin_left = 1916.0
-margin_right = 1916.0
-margin_bottom = 1076.0
+[node name="RightWall" type="Control" parent="LevelBox"]
+anchor_left = 1.0
+anchor_right = 1.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
 
-[node name="WallRight" type="StaticBody2D" parent="HBoxContainer/LevelBox/Walls/Walls/Right"]
+[node name="WallRight" type="StaticBody2D" parent="LevelBox/RightWall"]
 collision_layer = 8
 physics_material_override = ExtResource( 3 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HBoxContainer/LevelBox/Walls/Walls/Right/WallRight"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelBox/RightWall/WallRight"]
 shape = SubResource( 3 )
 
-[node name="Bottom" type="Control" parent="HBoxContainer/LevelBox/Walls"]
-margin_top = 1080.0
-margin_right = 1916.0
-margin_bottom = 1080.0
-size_flags_horizontal = 3
+[node name="BottomWall" type="Control" parent="LevelBox"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
 
-[node name="WallBottom" type="Area2D" parent="HBoxContainer/LevelBox/Walls/Bottom"]
+[node name="WallBottom" type="Area2D" parent="LevelBox/BottomWall"]
 input_pickable = false
 gravity_vec = Vector2( 0, 0 )
 gravity = 0.0
@@ -120,14 +109,7 @@ linear_damp = 0.0
 angular_damp = 0.0
 collision_layer = 8
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HBoxContainer/LevelBox/Walls/Bottom/WallBottom"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelBox/BottomWall/WallBottom"]
 shape = SubResource( 4 )
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 4 )
-
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-position = Vector2( 960, 1000 )
-stream = ExtResource( 4 )
-
-[connection signal="body_entered" from="HBoxContainer/LevelBox/Walls/Bottom/WallBottom" to="." method="_on_WallBottom_body_entered"]
+[connection signal="body_entered" from="LevelBox/BottomWall/WallBottom" to="." method="_on_WallBottom_body_entered"]

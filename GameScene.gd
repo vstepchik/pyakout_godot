@@ -2,7 +2,7 @@ extends MarginContainer
 
 var brick_scn = preload("res://Brick.tscn")
 var ball_scn = preload("res://Ball.tscn")
-onready var score_label = $HBoxContainer/HudBox/ScoreLabel
+onready var score_label = $HudBox/ScoreLabel
 
 func _ready():
 	init()
