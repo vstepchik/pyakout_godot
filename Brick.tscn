@@ -1,27 +1,35 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Brick.gd" type="Script" id=1]
 [ext_resource path="res://res/img/bricks.png" type="Texture" id=2]
 [ext_resource path="res://res/materials/BasicBrickMaterial.tres" type="PhysicsMaterial" id=3]
+[ext_resource path="res://res/sounds/sound_029.wav" type="AudioStream" id=4]
+[ext_resource path="res://BrickBody.gd" type="Script" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 16, 8 )
 
 [node name="Brick" type="Node2D"]
+script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true
 }
 
-[node name="ColorRect" type="Sprite" parent="."]
+[node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
 region_enabled = true
 region_rect = Rect2( 64, 0, 32, 16 )
+
+[node name="HitSoundPlayer" type="AudioStreamPlayer2D" parent="Sprite"]
+stream = ExtResource( 4 )
 
 [node name="Body" type="StaticBody2D" parent="."]
 collision_layer = 2
 collision_mask = 7
 physics_material_override = ExtResource( 3 )
-script = ExtResource( 1 )
+script = ExtResource( 5 )
 
 [node name="BrickShape" type="CollisionShape2D" parent="Body"]
 shape = SubResource( 1 )
+
+[connection signal="finished" from="Sprite/HitSoundPlayer" to="." method="_on_HitSoundPlayer_finished"]

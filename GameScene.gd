@@ -15,6 +15,7 @@ func init():
 	var ball = _spawn_ball(player_pos.x, player_pos.y - 24)
 	player.attachedBalls.append(ball)
 	add_child(ball)
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	
 func _init_level():
 	var spacing = 2

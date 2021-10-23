@@ -27,6 +27,20 @@ func _process(delta):
 	for ball in attachedBalls:
 		ball.position += position - prev_position
 
+func _input(event):
+	if event is InputEventMouseButton:
+		release_ball()
+	elif event is InputEventMouseMotion:
+		update_position(Vector2(event.position.x, position.y))
+
+func update_position(new_position: Vector2):
+	var width = $Body/CollisionShape2D.shape.height + $Body/CollisionShape2D.shape.radius * 2
+	var prev_position = position
+	position = new_position
+	position.x = clamp(position.x, width / 2, screen_size.x - width / 2)
+	for ball in attachedBalls:
+		ball.position += position - prev_position
+
 func release_ball():
 	var ball = attachedBalls.pop_back()
 	if ball:
