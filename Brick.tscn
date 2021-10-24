@@ -24,6 +24,7 @@ region_rect = Rect2( 64, 0, 32, 16 )
 stream = ExtResource( 4 )
 
 [node name="Body" type="StaticBody2D" parent="."]
+visible = false
 collision_layer = 2
 collision_mask = 7
 physics_material_override = ExtResource( 3 )

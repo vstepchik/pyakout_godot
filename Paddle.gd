@@ -3,15 +3,22 @@ extends Node2D
 export var speed = 400
 export var score = 0
 export var attachedBalls: Array = []
+export var ball_hit_sound_paths: Array = [
+	"res://res/sounds/sound_042.wav",
+	"res://res/sounds/sound_043.wav",
+	"res://res/sounds/sound_045.wav",
+]
 
-var screen_size
+onready var screen_size = get_viewport_rect().size
+onready var player = $Body/Sprite/BounceSoundPlayer
+var ball_hit_sounds: Array = []
+
 
 func _ready():
-	screen_size = get_viewport_rect().size
+	for sound_path in ball_hit_sound_paths:
+		ball_hit_sounds.append(load(sound_path))
 
 func _process(delta):
-	var width = $Body/CollisionShape2D.shape.height + $Body/CollisionShape2D.shape.radius * 2
-	var prev_position = position
 	var velocity = Vector2(0, 0)
 	
 	if Input.is_action_pressed("ui_select"):
@@ -21,11 +28,7 @@ func _process(delta):
 		velocity.x -= 1;
 	if Input.is_action_pressed("ui_right"):
 		velocity.x += 1;
-	position += velocity.normalized() * speed * delta
-	position.x = clamp(position.x, width / 2, screen_size.x - width / 2)
-	
-	for ball in attachedBalls:
-		ball.position += position - prev_position
+	update_position(position + velocity.normalized() * speed * delta)
 
 func _input(event):
 	if event is InputEventMouseButton:
@@ -34,10 +37,10 @@ func _input(event):
 		update_position(Vector2(event.position.x, position.y))
 
 func update_position(new_position: Vector2):
-	var width = $Body/CollisionShape2D.shape.height + $Body/CollisionShape2D.shape.radius * 2
+	var width = $Body/Sprite.region_rect.size.x
 	var prev_position = position
 	position = new_position
-	position.x = clamp(position.x, width / 2, screen_size.x - width / 2)
+	position.x = clamp(position.x, 60, screen_size.x - width / 2)
 	for ball in attachedBalls:
 		ball.position += position - prev_position
 
@@ -49,3 +52,10 @@ func release_ball():
 
 func accept_score(amount):
 	score += amount
+
+func ball_hit(_ball):
+	if (ball_hit_sounds):
+		player.stream = ball_hit_sounds[randi() % ball_hit_sounds.size()]
+		player.play()
+	else:
+		print("no ball hit sounds defined, paths: " + str(ball_hit_sound_paths) + " sounds: " + str(ball_hit_sounds))

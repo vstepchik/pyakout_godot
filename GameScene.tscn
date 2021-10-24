@@ -23,27 +23,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HudBox" type="ColorRect" parent="."]
-margin_right = 1920.0
-margin_bottom = 1080.0
-grow_horizontal = 0
-
-[node name="ScoreLabel" type="Label" parent="HudBox"]
-margin_right = 40.0
-margin_bottom = 14.0
-text = "Score: 0"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="ColorRect" type="ColorRect" parent="."]
-margin_right = 1920.0
-margin_bottom = 1080.0
-color = Color( 0.101961, 0.0901961, 0.0980392, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="LevelBox" type="CanvasLayer" parent="."]
 
 [node name="PlayerPaddle" parent="LevelBox" instance=ExtResource( 1 )]
@@ -103,5 +82,21 @@ collision_layer = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LevelBox/BottomWall/WallBottom"]
 shape = SubResource( 4 )
+
+[node name="ScoreLabel" type="Label" parent="LevelBox"]
+margin_left = 32.0
+margin_top = 16.0
+text = "Score: 0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 1920.0
+margin_bottom = 1080.0
+color = Color( 0.101961, 0.0901961, 0.0980392, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [connection signal="body_entered" from="LevelBox/BottomWall/WallBottom" to="." method="_on_WallBottom_body_entered"]

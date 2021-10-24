@@ -1,15 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Paddle.gd" type="Script" id=1]
 [ext_resource path="res://res/materials/BasicPaddleMaterial.tres" type="PhysicsMaterial" id=2]
 [ext_resource path="res://res/img/paddles.png" type="Texture" id=3]
 [ext_resource path="res://PaddleBody.gd" type="Script" id=4]
 
-[sub_resource type="CapsuleShape2D" id=1]
-height = 100.0
-
 [node name="Node2D" type="Node2D"]
-position = Vector2( 0.0468216, 0 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true
@@ -22,16 +18,14 @@ physics_material_override = ExtResource( 2 )
 script = ExtResource( 4 )
 
 [node name="Sprite" type="Sprite" parent="Body"]
-scale = Vector2( 2.4, 2.4 )
 texture = ExtResource( 3 )
 region_enabled = true
-region_rect = Rect2( 0, 0, 50, 10 )
+region_rect = Rect2( 0, 10, 120, 24 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Body"]
-rotation = 1.5708
-shape = SubResource( 1 )
+[node name="BounceSoundPlayer" type="AudioStreamPlayer2D" parent="Body/Sprite"]
 
 [node name="CollisionBump" type="CollisionPolygon2D" parent="Body"]
-polygon = PoolVector2Array( 0, -14, -50, -10, 50, -10 )
+polygon = PoolVector2Array( -60, 6, -60, 0, -58, -4, -52, -9, -45, -11, -30, -11.5, 0, -12, 30, -11.5, 45, -11, 52, -9, 58, -4, 60, 0, 60, 6 )
 
+[connection signal="ball_hit" from="Body" to="." method="ball_hit"]
 [connection signal="score_accepted" from="Body" to="." method="accept_score"]
