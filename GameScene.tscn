@@ -73,12 +73,12 @@ size_flags_horizontal = 0
 size_flags_vertical = 0
 
 [node name="WallBottom" type="Area2D" parent="LevelBox/BottomWall"]
+collision_layer = 8
 input_pickable = false
 gravity_vec = Vector2( 0, 0 )
 gravity = 0.0
 linear_damp = 0.0
 angular_damp = 0.0
-collision_layer = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LevelBox/BottomWall/WallBottom"]
 shape = SubResource( 4 )

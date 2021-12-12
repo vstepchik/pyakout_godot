@@ -1,5 +1,7 @@
 extends Node2D
 
+var pusher_scn = preload("res://Pusher.tscn")
+
 export var speed = 400
 export var score = 0
 export var attachedBalls: Array = []
@@ -22,7 +24,7 @@ func _process(delta):
 	var velocity = Vector2(0, 0)
 	
 	if Input.is_action_pressed("ui_select"):
-		release_ball()
+		handle_trigger()
 	
 	if Input.is_action_pressed("ui_left"):
 		velocity.x -= 1;
@@ -32,7 +34,8 @@ func _process(delta):
 
 func _input(event):
 	if event is InputEventMouseButton:
-		release_ball()
+		if event.pressed:
+			handle_trigger()
 	elif event is InputEventMouseMotion:
 		update_position(Vector2(event.position.x, position.y))
 
@@ -43,12 +46,26 @@ func update_position(new_position: Vector2):
 	position.x = clamp(position.x, 60, screen_size.x - width / 2)
 	for ball in attachedBalls:
 		ball.position += position - prev_position
+		
+func handle_trigger():
+	if attachedBalls:
+		release_ball()
+	else:
+		shoot_pusher()
 
 func release_ball():
 	var ball = attachedBalls.pop_back()
 	if ball:
 		ball.go()
 		ball.apply_central_impulse(Vector2(100, -500))
+		
+func shoot_pusher():
+	var pusher = pusher_scn.instance()
+	pusher.position = position + Vector2(0, -18)
+	pusher.add_to_group("pushers")
+	pusher.apply_central_impulse(Vector2(0, -1750))
+	get_parent().add_child(pusher)
+	return pusher
 
 func accept_score(amount):
 	score += amount

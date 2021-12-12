@@ -32,7 +32,7 @@ func _init_level():
 	var y_offset = 32
 	var seed_row = _generate_first_cellular_row(x_bricks)
 	var r_colors = _seed_cellular_matrix(seed_row, y_bricks, 105)
-	var g_colors = _seed_cellular_matrix(seed_row, y_bricks, 3)
+	var g_colors = _seed_cellular_matrix(seed_row, y_bricks, 154)
 	var b_colors = _seed_cellular_matrix(seed_row, y_bricks, 90)
 	for y in range(1, y_bricks):
 		for x in range(1, x_bricks):
@@ -92,4 +92,5 @@ func ball_lost(_ball):
 	_reset_ball()
 
 func _on_WallBottom_body_entered(body):
-	ball_lost(body)
+	if body.is_in_group("balls"):
+		ball_lost(body)
